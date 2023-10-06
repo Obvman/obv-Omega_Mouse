@@ -136,6 +136,19 @@ class OmegaMouseFullOverrides:
             actions.sleep(head_lag)
             actions.tracking.control_head_toggle(True)
             Omega_Mouse.first_pop_done = True
+
+    def omega_mouse_nudge():
+        """Enables head tracking without moving the curser to gaze"""
+        if Omega_Mouse.first_pop_done:
+            pass
+        else:
+            head_lag = Omega_Mouse.setting_head_track_lag.get()
+            actions.tracking.control_head_toggle(False)
+            actions.tracking.control_gaze_toggle(True)
+            actions.tracking.control_gaze_toggle(False)
+            actions.sleep(head_lag)
+            actions.tracking.control_head_toggle(True)
+            Omega_Mouse.first_pop_done = True
     
     def omega_mouse_wait():
         """Stops moving cursor. Does not release dragging"""

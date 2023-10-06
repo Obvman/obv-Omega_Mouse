@@ -147,6 +147,10 @@ class OmegaMouseActions:
     def omega_mouse_wait():
         """Does nothing when Omega Mouse is off"""
         print("Does nothing when Omega Mouse is off")
+
+    def omega_mouse_nudge():
+        """Does nothing when Omega Mouse is off"""
+        print("Does nothing when Omega Mouse is off")
     
     def omega_mouse_state_check():
         """Checks state of Omega Mouse"""

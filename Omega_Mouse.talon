@@ -39,7 +39,8 @@ omega restart: user.omega_mouse_restart()
 twill: user.omega_mouse_double_click()
 ^relo: user.omega_mouse_relocate()
 #drag: {overrides default mouse_drag in mouse.py for Omega Mouse functionality}
-drop: user.mouse_drag_end()
+#drop: user.mouse_drag_end()
 #(drag end | end drag | drop): {overrides default mouse_drag_end in mouse.py for Omega Mouse functionality}
 omega check state: user.omega_mouse_state_check()
 ^wait: user.omega_mouse_wait()
+^nudge me$: user.omega_mouse_nudge()
