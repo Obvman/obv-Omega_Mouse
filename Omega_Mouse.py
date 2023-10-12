@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, ctrl
+from talon import Module, Context, actions, ctrl, app
 
 mod = Module()
 mod.tag("om_on", desc="Signals Omega Mouse is toggled on")
@@ -203,3 +203,9 @@ class OmegaMouseSwitchOverrides:
         ctx.tags = []
         print("""Omega Mouse switched to Zoom Mouse.'om_state' is now set to False.
               Omega Mouse tags are disabled.""")
+
+# Enable Omega Mouse on startup
+def on_ready():
+    actions.user.omega_mouse_toggle()
+
+app.register("ready", on_ready)
