@@ -40,7 +40,8 @@ class OmegaMouseFullOverrides:
                 Omega_Mouse.first_pop_done = True
             # Phase 2: Left click and disable head tracking
             elif Omega_Mouse.first_pop_done == True:
-                actions.mouse_click(0)
+                # actions.mouse_click(0)
+                actions.user.native_mouse_click()
                 actions.tracking.control_gaze_toggle(False)
                 actions.tracking.control_head_toggle(False)
                 Omega_Mouse.first_pop_done = False
