@@ -118,6 +118,48 @@ class OmegaMouseFullOverrides:
             actions.tracking.control_gaze_toggle(False)
             actions.tracking.control_head_toggle(False)
             Omega_Mouse.disable_tracking_state()
+
+    def omega_mouse_triple_click():
+        """Triple Click that turns off tracking if needed."""
+        if Omega_Mouse.get_tracking_state() == False:
+            actions.mouse_click(0)
+            actions.mouse_click(0)
+            actions.mouse_click(0)
+        elif Omega_Mouse.get_tracking_state() == True:
+            actions.mouse_click(0)
+            actions.mouse_click(0)
+            actions.mouse_click(0)
+            actions.tracking.control_gaze_toggle(False)
+            actions.tracking.control_head_toggle(False)
+            Omega_Mouse.disable_tracking_state()
+
+    def omega_mouse_control_click():
+        """Control Click then turn off tracking"""
+        if Omega_Mouse.get_tracking_state() == False:
+            actions.key("ctrl:down")
+            actions.mouse_click(0)
+            actions.key("ctrl:up")
+        elif Omega_Mouse.get_tracking_state() == True:
+            actions.key("ctrl:down")
+            actions.mouse_click(0)
+            actions.key("ctrl:up")
+            actions.tracking.control_gaze_toggle(False)
+            actions.tracking.control_head_toggle(False)
+            Omega_Mouse.disable_tracking_state()
+
+    def omega_mouse_shift_click():
+        """Shift Click then turn off tracking"""
+        if Omega_Mouse.get_tracking_state() == False:
+            actions.key("shift:down")
+            actions.mouse_click(0)
+            actions.key("shift:up")
+        elif Omega_Mouse.get_tracking_state() == True:
+            actions.key("shift:down")
+            actions.mouse_click(0)
+            actions.key("shift:up")
+            actions.tracking.control_gaze_toggle(False)
+            actions.tracking.control_head_toggle(False)
+            Omega_Mouse.disable_tracking_state()
     
     def omega_mouse_relocate():
         """Moves cursor if first pop was already activated in 2-phase process"""

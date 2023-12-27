@@ -7,7 +7,7 @@ settings():
 	# 1 = Lite
 	# 2 = Basic
 	user.omega_mouse_mode = 0
-		
+	
 # ----- Omega Mouse Cursor Time Intervals -----
 # Applies to all modes. No restart required with change, only save.
 # Total between both settings should be under 1800ms. Must use quotes in value.
