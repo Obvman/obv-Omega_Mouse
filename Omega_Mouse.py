@@ -1,5 +1,4 @@
 from talon import Module, Context, actions, ctrl, app
-import typing
 
 mod = Module()
 mod.tag("om_on", desc="Signals Omega Mouse is toggled on")
