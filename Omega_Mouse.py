@@ -61,7 +61,7 @@ def disable_tracking_state() -> None:
     om_tracking = False
     update_tags()
 
-def get_tracking_state() -> bool:
+def is_tracking() -> bool:
     global om_tracking
     return om_tracking
 
@@ -82,7 +82,7 @@ def update_tags() -> None:
             case _:
                 pass
 
-        if get_tracking_state():
+        if is_tracking():
             tags.append("user.om_tracking")
 
     ctx.tags = tags

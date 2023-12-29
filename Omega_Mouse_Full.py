@@ -26,7 +26,7 @@ class OmegaMouseFullOverrides:
         # If drag inactive, popping does 2-phase clicking
         if len(ctrl.mouse_buttons_down()) == 0:
             # Phase 1: Move cursor with gaze then switch to head tracking
-            if Omega_Mouse.get_tracking_state() == False:
+            if not Omega_Mouse.is_tracking():
                 actions.tracking.control_head_toggle(False)
                 actions.tracking.control_gaze_toggle(True)
                 actions.sleep(gaze_window)
@@ -35,7 +35,7 @@ class OmegaMouseFullOverrides:
                 actions.tracking.control_head_toggle(True)
                 Omega_Mouse.enable_tracking_state()
             # Phase 2: Left click and disable head tracking
-            elif Omega_Mouse.get_tracking_state() == True:
+            elif Omega_Mouse.is_tracking():
                 # actions.mouse_click(0)
                 actions.user.native_mouse_click()
                 actions.tracking.control_gaze_toggle(False)
@@ -43,7 +43,7 @@ class OmegaMouseFullOverrides:
                 Omega_Mouse.disable_tracking_state()
         # If drag is active, Phase 2 pop does "mouse_drag_end" instead of simple left click
         else:
-            if Omega_Mouse.get_tracking_state() == False:
+            if not Omega_Mouse.is_tracking():
                 actions.tracking.control_head_toggle(False)
                 actions.tracking.control_gaze_toggle(True)
                 actions.sleep(gaze_window)
@@ -52,7 +52,7 @@ class OmegaMouseFullOverrides:
                 actions.tracking.control_head_toggle(True)
                 Omega_Mouse.enable_tracking_state()
             # Second pop does "mouse_drag_end" in ctx_full below
-            elif Omega_Mouse.get_tracking_state() == True:
+            elif Omega_Mouse.is_tracking():
                 actions.tracking.control_gaze_toggle(False)
                 actions.tracking.control_head_toggle(False)
                 Omega_Mouse.disable_tracking_state()
@@ -74,9 +74,9 @@ class OmegaMouseFullOverrides:
         Alternate way to end Phase 2, or to click immediately without 2-phase popping"""
         # If drag is inactive, check tracking state for left click behavior.
         if len(ctrl.mouse_buttons_down()) == 0:
-            if Omega_Mouse.get_tracking_state() == False:
+            if not Omega_Mouse.is_tracking():
                 actions.mouse_click(0)
-            elif Omega_Mouse.get_tracking_state() == True:
+            elif Omega_Mouse.is_tracking():
                 actions.mouse_click(0)
                 actions.tracking.control_gaze_toggle(False)
                 actions.tracking.control_head_toggle(False)
@@ -97,10 +97,10 @@ class OmegaMouseFullOverrides:
     def omega_mouse_left_modup_click():
         """Left Click, release modifer keys, then turn of tracking if needed.
         Alternate way to end Phase 2, or to click immediately without 2-phase popping"""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             actions.mouse_click(0)
             Omega_Mouse.omega_mouse_modifiers_release_function()
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.mouse_click(0)
             actions.tracking.control_gaze_toggle(False)
             actions.tracking.control_head_toggle(False)
@@ -109,10 +109,10 @@ class OmegaMouseFullOverrides:
 
     def omega_mouse_double_click():
         """Double Click that turns off tracking if needed."""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             actions.mouse_click(0)
             actions.mouse_click(0)
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.mouse_click(0)
             actions.mouse_click(0)
             actions.tracking.control_gaze_toggle(False)
@@ -121,11 +121,11 @@ class OmegaMouseFullOverrides:
 
     def omega_mouse_triple_click():
         """Triple Click that turns off tracking if needed."""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             actions.mouse_click(0)
             actions.mouse_click(0)
             actions.mouse_click(0)
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.mouse_click(0)
             actions.mouse_click(0)
             actions.mouse_click(0)
@@ -135,11 +135,11 @@ class OmegaMouseFullOverrides:
 
     def omega_mouse_control_click():
         """Control Click then turn off tracking"""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             actions.key("ctrl:down")
             actions.mouse_click(0)
             actions.key("ctrl:up")
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.key("ctrl:down")
             actions.mouse_click(0)
             actions.key("ctrl:up")
@@ -149,11 +149,11 @@ class OmegaMouseFullOverrides:
 
     def omega_mouse_shift_click():
         """Shift Click then turn off tracking"""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             actions.key("shift:down")
             actions.mouse_click(0)
             actions.key("shift:up")
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.key("shift:down")
             actions.mouse_click(0)
             actions.key("shift:up")
@@ -165,9 +165,9 @@ class OmegaMouseFullOverrides:
         """Moves cursor if first pop was already activated in 2-phase process"""
         gaze_window = Omega_Mouse.setting_gaze_capture_interval.get()
         head_lag = Omega_Mouse.setting_head_track_lag.get()
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             pass
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.tracking.control_head_toggle(False)
             actions.tracking.control_gaze_toggle(True)
             actions.sleep(gaze_window)
@@ -177,9 +177,9 @@ class OmegaMouseFullOverrides:
     
     def omega_mouse_wait():
         """Stops moving cursor. Does not release dragging"""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             pass
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             actions.tracking.control_gaze_toggle(False)
             actions.tracking.control_head_toggle(False)
             Omega_Mouse.disable_tracking_state()
@@ -188,7 +188,7 @@ class OmegaMouseFullOverrides:
     # Makes dragging end Phase 2, otherwise default action.
     def mouse_drag(button: int):
         """Altered mouse drag for Omega Mouse functionality"""
-        if Omega_Mouse.get_tracking_state() == False:
+        if not Omega_Mouse.is_tracking():
             """If cursor begins in correct location already, activate drag without move"""
             # stealing drag code from mouse_drag in mouse.py file
             buttons_held_down = list(ctrl.mouse_buttons_down())
@@ -196,7 +196,7 @@ class OmegaMouseFullOverrides:
                 ctrl.mouse_click(button=button, up=True)
             ctrl.mouse_click(button=button, down=True)
             #----------------------------------------------------
-        elif Omega_Mouse.get_tracking_state() == True:
+        elif Omega_Mouse.is_tracking():
             """Drag after first pop completes Phase 2. Preps drag for movement"""
             # stealing "drag" code from mouse_drag in mouse.py file
             buttons_held_down = list(ctrl.mouse_buttons_down())
