@@ -31,6 +31,16 @@ omega restart: user.omega_mouse_restart()
 #zoom mouse: {uses Omega Mouse function placed into mouse.talon. See "Set-Up" in readme.}
 omega check state: user.omega_mouse_state_check()
 
+yum: mouse_click(0)
+#(yum | gum): mouse_click(0)
+#(yummer | gummer): user.omega_mouse_left_modup_click()
+trio: user.omega_mouse_triple_click()
+con: user.omega_mouse_control_click()
+shill: user.omega_mouse_shift_click()
+# twill: user.omega_mouse_double_click()
+#drag: {overrides default mouse_drag in mouse.py for Omega Mouse functionality}
+#drop: user.mouse_drag_end()
+#(drag end | end drag | drop): {overrides default mouse_drag_end in mouse.py for Omega Mouse functionality}
 
 
 # ----- Omega Mouse Features -----
